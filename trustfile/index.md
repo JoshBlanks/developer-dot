@@ -32,7 +32,7 @@ doctype: overview
         <div class="col-md-3 col-md-offset-2">
             <h4>Check out the documentation</h4>
         </div>
-        <div class="col-md-3 col-md-offset-2">
+        <div class="col-md-3 col-md-offset-1">
             <h4>Sign up for the service to get an API key</h4>
         </div>
     </div>
