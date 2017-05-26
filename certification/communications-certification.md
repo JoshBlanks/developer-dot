@@ -21,7 +21,6 @@ Depending on the scope of your integration and your business practice, your test
 will vary. For development partners, many of these are requirements for certification. If
 you were to give us a full functionality demo, here's what we'd like to see.
 
-<div class="mobile-table">
 <table class="styled-table">
 <tr>
 <td><strong>Use Case</strong></td>
@@ -174,4 +173,3 @@ Display error code
 </td>
 </tr>
 </table>
-</div>

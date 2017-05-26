@@ -395,8 +395,8 @@
 
 // Default navbar
 .navbar-default {
-  background-color: $Form-fill;
-  border-color: $Disabled;
+  background-color: $navbar-default-bg;
+  border-color: $navbar-default-border;
 
   .navbar-brand {
     color: $navbar-default-brand-color;

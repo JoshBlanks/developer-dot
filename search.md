@@ -30,7 +30,6 @@ permalink: /search/
                 <option value="certCapture">CertCapture</option>
                 <option value="trustFile">TrustFile</option>
                 <option value="communications">Communications</option>
-                <option value="blog">Blog</option>
             </select>
         </div>
         <div class="col-md-5">
