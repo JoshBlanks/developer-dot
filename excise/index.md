@@ -13,12 +13,12 @@ doctype: overview
 </div>
 <div class="row border-top padding-top padding-bottom">
   <div class="col-md-8 col-md-offset-2 text-center">
-    <h1 class="h1p" class="text-left">How does the API work?</h1>
+    <h1 class="h1p" class="text-left ">How does the API work?</h1>
     <h4 class="text-left">The Excise Tax API integrates with most major back-end financial systems, automating
         tax calculation for a broad range of fuel transactions, including invoices, purchase
         orders, sales orders, or movement accruals.
     </h4>
-    <h3 class="text-left">The Excise Tax API is a SOAP web service</h3>
+    <h3 class="text-left text-colorchange">The Excise Tax API is a SOAP web service</h3>
     <p class="text-left">This service is the external programmatic interface into the that is the external programmatic interface into the Avalara Excise application. It provides for a platform-independent mechanism to obtain tax calculation information. </p>
      <h2 class="text-left">How does the Avalara Excise solution benefit businesses?</h2>
      <h4 class="text-left">An error in tax determination can result in significant sales margin impact, hidden tax
