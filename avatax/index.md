@@ -79,10 +79,17 @@ doctype: overview
 <div class="row padding-top padding-bottom" >
   <div class="col-md-8 col-md-offset-2 text-center">
     <h1 class="h1p">Fast and easy integration with AvaTax</h1>
+
     <ul class="pipe" >
         <li><a href="/tests/testing-your-integration">Test your integration</a></li>
         <li><a href="/certification/avatax/">Integration Checklists</a></li>
             </ul>
+
+    <ul class="pipe">
+        <li><a href="/tests/testing-your-integration">Test your integration</a></li>
+        <li><a href="/certification/avatax/">Integration Checklists</a></li>
+    </ul>
+>>>>>>> upstream/master
   </div>
  
 </div>
