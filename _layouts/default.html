@@ -60,11 +60,7 @@
             </button>
             </div>
             <div class="collapse navbar-collapse js-navbar-collapse">
-
-                <ul class="nav navbar-nav {{page.nav}}">
-
                 <ul class="nav navbar-nav {{page.nav}} {{layout.nav}}">
->>>>>>> upstream/master
                     <li class="apis visible-xs-block"><a href="/avalara-apis"><span class="text-uppercase">API</span>s</a></li>
                     <li class="apis dropdown dropdown-large hidden-xs">
                         <a class="dropdown-toggle" data-toggle="dropdown"><span class="text-uppercase">API</span>s <i class="caret"></i></a>
@@ -155,36 +151,6 @@
                     </li>
                     <li class="sdk dropdown dropdown-large hidden-xs">
                         <a class="dropdown-toggle" data-toggle="dropdown"><span class="text-uppercase">SDK</span> <b class="caret"></b></a>
-
-                        <ul class="dropdown-menu dropdown-menu-large">
-                            <li><a href="/sdk/">The AvaTax SDK</a></li>
-                            <li><a href="/sdk/soap">SOAP SDK</a></li>
-                        </ul>
-                    </li>
-                    <li class="tests"><a href="/tests/testing-your-integration/"><span class="text-uppercase">Tests</span></a></li>
-                    <!-- removing until the link to the Self-Test is fugured out -->
-                    <!--
-                    <li class="tests dropdown dropdown-large hidden-xs">
-                        <a class="dropdown-toggle" data-toggle="dropdown"><span class="text-uppercase">Tests</span> <b class="caret"></b></a>
-                        
-                        <ul class="dropdown-menu dropdown-menu-large">
-                            
-                            <li><a href="/tests/self-test">Avalara Self-Test Tool</a></li> 
-                            <li><a href="/tests/testing-your-integration/">Avalara Test Cases</a></li>
-                        </ul>
-                    </li> -->
-                    
-                    <li class="certification dropdown dropdown-large hidden-xs">
-                        <a class="dropdown-toggel" data-toggle="dropdown"><span class="text-uppercase">Become Certified</span> <b class="caret"></b></a>
-                        <ul class="dropdown-menu dropdown-menu-large">
-                            <li><a href="/certification/">Overview</a></li>
-                            <li><a href="/certification/avatax/">Avalara AvaTax</a></li>
-                            <li><a href="/certification/communications-certification/">Avalara Communications</a></li>
-                            <li><a href="/certification/excise/">Avalara Excise</a></li>
-                            <li><a href="/certification/certcapture/">Avalara CertCapture</a></li>
-                        </ul>
-                    </li>
-
                         <ul class="dropdown-menu dropdown-menu-large"> 
                             <li {% if page.url == "/sdk/get-started-2" %}class="active"{% endif %}><a href="/sdk/get-started-2">Get Started with AvaTax</a></li>
                             <br/>
@@ -220,7 +186,6 @@
                             <li><a href="/certification/certcapture/">Avalara CertCapture</a></li>
                         </ul>
                     </li>
->>>>>>> upstream/master
                     <li class="resources dropdown dropdown-large hidden-xs">
                         <a class="dropdown-toggle" data-toggle="dropdown"><span class="text-uppercase">Resources</span> <b class="caret"></b></a>
                         <ul class="dropdown-menu dropdown-menu-large">
@@ -273,26 +238,9 @@
         <section class="row padding-sides half">
             <nav class="col-md-3">
                 {% include sdk_navigation.html %} 
-
             </nav>
             <main class="col-md-9 small-no-padding">{{ content }}</main>
         </section>
-<!-- removing this until we get approval on the self-test link -->
-        
-        {% elsif page.nav == 'tests' %}
-        <section class="row padding-sides half">
-<!--
-            {% include tests_breadcrumb.html %}
-            <nav class="col-md-3">
-                {% include tests_navigation.html %}
-=======
->>>>>>> upstream/master
-            </nav>
--->
-            <main class="col-md-9 small-no-padding">{{ content }}</main>
-        </section>
-
-=======
 <!-- removing this until we get approval on the self-test link -->      
         {% elsif page.nav == 'tests' %}
         <section class="row padding-sides half">
@@ -304,7 +252,6 @@
 -->
             <main class="col-md-9 small-no-padding">{{ content }}</main>
         </section>
->>>>>>> upstream/master
     
         {% elsif page.nav == 'certification' %} {% if page.title == 'AvaTax Certification' %} {% include ava_certification_breadcrumbs.html %}
         <section class="row padding-sides half">
@@ -312,11 +259,7 @@
                {% include ava_certification_navigation.html %}
                 </nav>
             {%endif%}
-
-            <main class="col-md-12 small-no-padding">{{ content }}</main>
-
             <main class="col-md-9 small-no-padding">{{ content }}</main>
->>>>>>> upstream/master
         </section> 
         {% elsif page.nav == 'apis' %} {%if page.doctype != 'overview' %} {% include api_breadcrumb.html %} {%endif%} {% if page.doctype == 'api_references' or page.doctype == 'use_cases' %}
         <section class="row padding-sides{% if page.doctype == 'use_cases' or page.doctype == 'sdks' %} half{% endif %}">

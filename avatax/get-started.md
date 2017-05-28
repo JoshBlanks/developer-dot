@@ -96,10 +96,6 @@ The AvaTax SDK contains a lot of useful features to make it quick and easy to be
 
 <h4>What's Next?</h4>
 
-
-If you didn't already check out the <a href="/blog/2013/11/11/introduction-to-the-avalara-avatax-api">Introduction to the Avalara AvaTax API</a>, that's where you should go next. As you're designing your integration, you'll want to consider what kind of <a href="/avatax/use-cases">use cases</a> you need to accommodate. We also recommend that you take a look at the <a href="/avatax/api-reference/tax/v1">API Reference</a>, review our <a href="/certification/avatax/">integration checklist</a>, and check out the <a href="https://community.avalara.com/avalara/category_sets/developers">Developer Community</a>. 
-</div>
- 
 <br/>
 
 We're really proud of the world-leading AvaTax platform, and we hope you'll have as much fun using it as we have fun building it!  Here are some ideas for next steps:
@@ -111,4 +107,3 @@ We're really proud of the world-leading AvaTax platform, and we hope you'll have
     <li>Want more information about all the great API features in AvaTax?  Visit the <a href="https://sandbox-rest.avatax.com/swagger/ui/index.html">online AvaTax API reference</a> now!</li>
     <li>Have a question about the API, or want to share your success story?  Visit the <a href="https://community.avalara.com/avalara">AvaTax Developer Community</a> and ask questions and share tips and tricks with other developers from around the world!</li>
 </ul>
->>>>>>> upstream/master
