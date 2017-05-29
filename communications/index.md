@@ -81,10 +81,7 @@ doctype: overview
     <h1 class="h1p">Fast and easy integration with AvaTax</h1>
 
     <ul class="pipe" class="padding-marginbottom">
- 
-    <ul class="pipe">
->>>>>>> upstream/master
-        <li><a href="/certification/communications/">Integration checklists</a></li>
+       <li><a href="/certification/communications/">Integration checklists</a></li>
     </ul>
   </div>
 </div>

@@ -86,9 +86,7 @@ doctype: overview
 
     <ul class="pipe" class="padding-marginbottom">
 
-    <ul class="pipe">
->>>>>>> upstream/master
-        <li><a href="/certification/excise">Integration checklists</a></li>
+          <li><a href="/certification/excise">Integration checklists</a></li>
     </ul>
   </div>
 </div>
