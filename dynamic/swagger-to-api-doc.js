@@ -39,7 +39,7 @@ const saveStaticPage = (tagName, apiPath, buildHtmlFunc, state) => {
     });
 };
 
-const saveMethodsIndex = (apiName, apiPath, product, linksArray) => {
+const saveMethodsIndex = (apiName, saveRoot, product, linksArray, methodSubsetName) => {
     const linksHtml = linksArray.reduce((accum, l) => {
         return `${accum}
 <tr>
@@ -59,7 +59,7 @@ product: ${product}
 doctype: api_references
 endpoint_links: []
 ---
-<h1>{{page.api_name}} - Methods</h1>
+<h1>{{page.api_name}} - ${methodSubsetName || 'Methods'}</h1>
 <table class="styled-table">
     <thead>
         <tr>
@@ -73,8 +73,6 @@ endpoint_links: []
 </table>
 <br>
 `;
-
-    const saveRoot = `api-reference/${apiPath}/methods`;
 
     mkdirp(saveRoot, (err) => {
         if (err) {
@@ -175,9 +173,29 @@ endpoint_links: [
 
                     // Save off a simplified version of the App for our set of tags' 'root page'
                     saveStaticPage(null, 'api-reference/' + apiPath, buildHtml, {...staticState, apiEndpoints: []});
+                    const tagLinks = Object.keys(tagMap).map((tag) => {
+                        return {
+                            link: `api-reference/${apiPath}/methods/${tag}`,
+                            name: tag
+                            // description: tag.description
+                        };
+                    });
+
+                    saveMethodsIndex(apiName, `api-reference/${apiPath}/methods`, product, tagLinks);
+
                     // Want to save off pages for each tagin the API's endpoints
                     Object.keys(tagMap).forEach((tag) => {
                         const operationIdsForTag = tagMap[tag];
+
+                        const apiEndpointLinks = staticState.apiEndpoints.filter((ep) => operationIdsForTag.indexOf(ep.operationId) !== -1).map((ep) => {
+                            return {
+                                link: createEndpointUrl(apiPath, ep.operationId, tag),
+                                name: ep.name,
+                                description: ep.description
+                            };
+                        });
+
+                        saveMethodsIndex(apiName, `api-reference/${apiPath}/methods/${tag}`, product, apiEndpointLinks, tag);
 
                         staticState.apiEndpoints.filter((ep) => operationIdsForTag.indexOf(ep.operationId) !== -1).forEach((ep) => {
                             const singleEndpointStaticState = {...staticState, apiEndpoints: [ep]};
@@ -195,7 +213,7 @@ endpoint_links: [
                         };
                     });
 
-                    saveMethodsIndex(apiName, apiPath, product, apiEndpointLinks);
+                    saveMethodsIndex(apiName, `api-reference/${apiPath}/methods`, product, apiEndpointLinks);
 
                     staticState.apiEndpoints.forEach((ep) => {
                         const singleEndpointStaticState = {...staticState, apiEndpoints: [ep]};
