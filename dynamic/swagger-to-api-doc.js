@@ -27,16 +27,18 @@ const saveStaticPage = (tagName, apiPath, buildHtmlFunc, state) => {
             throw err;
         }
 
-        fs.writeFile(`${savePath}/index.html`, html, (writeErr) => {
+        fs.writeFile(`${savePath}.html`, html, (writeErr) => {
             if (writeErr) {
                 throw writeErr;
             }
             /* eslint-disable no-console */
-            console.log(`/${apiPath}/index.html saved successfully!`);
+            console.log(`/${apiPath}.html saved successfully!`);
             /* eslint-enable no-console */
         });
     });
 };
+
+const createEndpointUrl = (apiPath, operationId, tag) => `${apiPath}/methods/${tag ? tag + '/' : ''}${operationId.replace(/\s/g, '')}`;
 
 export default (fileName, apiName, apiPath, product) => {
     if (!fileName || !apiName || !apiPath) {
@@ -112,7 +114,7 @@ endpoint_links: [
                                 throw writeErr;
                             }
                             /* eslint-disable no-console */
-                            console.log(`/${apiPath}/index.html saved successfully!`);
+                            console.log(`/${apiPath}.html saved successfully!`);
                             /* eslint-enable no-console */
                         });
                     });
@@ -122,13 +124,22 @@ endpoint_links: [
                     // Want to save off pages for each tagin the API's endpoints
                     Object.keys(tagMap).forEach((tag) => {
                         const operationIdsForTag = tagMap[tag];
-                        const newApiPath = path.join(path.join(apiPath, tag));
 
-                        saveStaticPage(tag, newApiPath, buildHtml, {...staticState, apiEndpoints: staticState.apiEndpoints.filter((ep) => operationIdsForTag.indexOf(ep.operationId) !== -1)});
+                        staticState.apiEndpoints.filter((ep) => operationIdsForTag.indexOf(ep.operationId) !== -1).forEach((ep) => {
+                            const singleEndpointStaticState = {...staticState, apiEndpoints: [ep]};
+                            const singleEndpointPath = createEndpointUrl(apiPath, ep.operationId, tag);
+
+                            saveStaticPage(tag, singleEndpointPath, buildHtml, singleEndpointStaticState);
+                        });
                     });
                 } else {
-                    // Normal case, just save a single API pages
-                    saveStaticPage(null, apiPath, buildHtml, staticState);
+                    staticState.apiEndpoints.forEach((ep) => {
+                        const singleEndpointStaticState = {...staticState, apiEndpoints: [ep]};
+                        const singleEndpointPath = createEndpointUrl(apiPath, ep.operationId);
+
+                        // Normal case, just save a single API pages
+                        saveStaticPage(null, singleEndpointPath, buildHtml, singleEndpointStaticState);
+                    });
                 }
             }).catch((err) => {
                 /* eslint-disable no-console */
@@ -139,5 +150,3 @@ endpoint_links: [
         }
     });
 };
-
-
