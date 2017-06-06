@@ -21,8 +21,9 @@ const saveStaticPage = (tagName, apiPath, buildHtmlFunc, state) => {
     );
     const html = buildHtmlFunc(tagName, staticHtml, state);
     const savePath = path.join(__dirname, '..', apiPath);
+    const saveFolder = savePath.substring(0, savePath.lastIndexOf('/'));
 
-    mkdirp(savePath, (err) => {
+    mkdirp(saveFolder, (err) => {
         if (err) {
             throw err;
         }
@@ -38,7 +39,7 @@ const saveStaticPage = (tagName, apiPath, buildHtmlFunc, state) => {
     });
 };
 
-const createEndpointUrl = (apiPath, operationId, tag) => `${apiPath}/methods/${tag ? tag + '/' : ''}${operationId.replace(/\s/g, '')}`;
+const createEndpointUrl = (apiPath, operationId, tag) => `api-reference/${apiPath}/methods/${tag ? tag + '/' : ''}${operationId.replace(/\s/g, '')}`;
 
 export default (fileName, apiName, apiPath, product) => {
     if (!fileName || !apiName || !apiPath) {
