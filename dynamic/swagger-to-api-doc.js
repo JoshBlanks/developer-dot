@@ -39,6 +39,59 @@ const saveStaticPage = (tagName, apiPath, buildHtmlFunc, state) => {
     });
 };
 
+const saveMethodsIndex = (apiName, apiPath, product, linksArray) => {
+    const linksHtml = linksArray.reduce((accum, l) => {
+        return `${accum}
+<tr>
+    <td><a href="/${encodeURIComponent(l.link)}">${l.name}</a></td>
+    <td>In Progress</td>
+</tr>`;
+    }, '');
+
+
+    const table = `---
+layout: default
+title: "API Console"
+api_console: 1
+api_name: ${apiName}
+nav: apis
+product: ${product}
+doctype: api_references
+endpoint_links: []
+---
+<h1>{{page.api_name}} - Methods</h1>
+<table class="styled-table">
+    <thead>
+        <tr>
+            <th>Method</th>
+            <th>Summary</th>
+        </tr>
+    </thead>
+    <tbody>
+        ${linksHtml}
+    </tbody>
+</table>
+<br>
+`;
+
+    const saveRoot = `api-reference/${apiPath}/methods`;
+
+    mkdirp(saveRoot, (err) => {
+        if (err) {
+            throw err;
+        }
+
+        fs.writeFile(saveRoot + '/index.html', table, (writeErr) => {
+            if (writeErr) {
+                throw writeErr;
+            }
+            /* eslint-disable no-console */
+            console.log(`${saveRoot}/index.html saved successfully!`);
+            /* eslint-enable no-console */
+        });
+    });
+};
+
 const createEndpointUrl = (apiPath, operationId, tag) => `api-reference/${apiPath}/methods/${tag ? tag + '/' : ''}${operationId.replace(/\s/g, '')}`;
 
 export default (fileName, apiName, apiPath, product) => {
@@ -84,7 +137,7 @@ ${tagName ? `tag_name: ${tagName}` : ''}
 nav: apis
 product: ${product}
 doctype: api_references
-modelsPath: ${fileName.substr(0, fileName.lastIndexOf('.'))}/models
+modelsPath: api-reference/${fileName.substr(0, fileName.lastIndexOf('.'))}/models
 endpoint_links: [
     ${endpointLinks}
 ]
@@ -121,7 +174,7 @@ endpoint_links: [
                     });
 
                     // Save off a simplified version of the App for our set of tags' 'root page'
-                    saveStaticPage(null, apiPath, buildHtml, {...staticState, apiEndpoints: []});
+                    saveStaticPage(null, 'api-reference/' + apiPath, buildHtml, {...staticState, apiEndpoints: []});
                     // Want to save off pages for each tagin the API's endpoints
                     Object.keys(tagMap).forEach((tag) => {
                         const operationIdsForTag = tagMap[tag];
@@ -134,6 +187,16 @@ endpoint_links: [
                         });
                     });
                 } else {
+                    const apiEndpointLinks = staticState.apiEndpoints.map((ep) => {
+                        return {
+                            link: createEndpointUrl(apiPath, ep.operationId),
+                            name: ep.name,
+                            description: ep.description
+                        };
+                    });
+
+                    saveMethodsIndex(apiName, apiPath, product, apiEndpointLinks);
+
                     staticState.apiEndpoints.forEach((ep) => {
                         const singleEndpointStaticState = {...staticState, apiEndpoints: [ep]};
                         const singleEndpointPath = createEndpointUrl(apiPath, ep.operationId);
