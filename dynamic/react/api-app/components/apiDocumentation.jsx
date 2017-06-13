@@ -105,6 +105,7 @@ ApiDocumentation.displayName = 'API Documentation';
 ApiDocumentation.propTypes = {
     endpoint: PropTypes.object
 };
+ApiDocumentation.displayName = 'Url Helper';
 UrlHelper.propTypes = {
     endpoint: React.PropTypes.object
 };
