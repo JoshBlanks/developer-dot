@@ -12,7 +12,7 @@ export default {
             }
         };
     },
-    testPleaseWork: (endpointId) => {
+    consoleLoadingAnimation: (endpointId) => {
         return {
             type: actionTypes.SUBMIT_STARTED,
             endpointId: endpointId

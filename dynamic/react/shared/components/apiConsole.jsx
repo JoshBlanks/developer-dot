@@ -23,9 +23,9 @@ const ApiConsole = (props) => {
             <div className={'col-md-8 col-xs-12 api-console-output'}>
                 <ConsoleLiveData
                     action={props.endpoint.action}
+                    consoleLoading={props.endpoint.apiConsoleLoading}
                     path={props.endpoint.path}
                     request={getRequest(props.endpoint)}
-                    loading={props.endpoint.apiConsoleLoading}
                     response={props.endpoint.apiResponse} />
             </div>
         </div>
