@@ -25,6 +25,7 @@ const ApiConsole = (props) => {
                     action={props.endpoint.action}
                     path={props.endpoint.path}
                     request={getRequest(props.endpoint)}
+                    loading={props.endpoint.apiConsoleLoading}
                     response={props.endpoint.apiResponse} />
             </div>
         </div>

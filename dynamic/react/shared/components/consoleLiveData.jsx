@@ -108,7 +108,7 @@ const syntaxHighlight = (jsonObj, highlightedFields) => {
     return highlightPunctuation(json);
 };
 
-const ConsoleLiveData = ({action, highlightedInputs, path, request, response}) => {
+const ConsoleLiveData = ({action, highlightedInputs, loading, path, request, response}) => {
     return (
         <div>
             <h5 className={'console-output-header'}>{'API Endpoint'}</h5>
@@ -124,12 +124,12 @@ const ConsoleLiveData = ({action, highlightedInputs, path, request, response}) =
                             </div>
                             <div className={'col-md-6 console-res-container'}>
                                 <h5 className={'console-output-header'}>{'Response'}</h5>
-                                <div className={'code-snippet'}><pre dangerouslySetInnerHTML={{__html: response ? syntaxHighlight(response.body) : ' '}} /></div>
+                                <div className={'code-snippet'}>{loading ? <div className={'loading-pulse'}></div> : <pre dangerouslySetInnerHTML={{__html: response ? syntaxHighlight(response.body) : ' '}} />}</div>
                             </div>
                         </div> :
                         <div>
                             <h5 className={'console-output-header'}>{'Response'}</h5>
-                            <div className={'code-snippet'}><pre dangerouslySetInnerHTML={{__html: response ? syntaxHighlight(response.body) : ' '}} /></div>
+                            <div className={'code-snippet'}>{loading ? <div className={'loading-pulse'}></div> : <pre dangerouslySetInnerHTML={{__html: response ? syntaxHighlight(response.body) : ' '}} />}</div>
                             {/* eslint-enable react/no-danger */}
                         </div>
                     }
@@ -148,6 +148,7 @@ ConsoleLiveData.propTypes = {
         value: PropTypes.string.isRequired,
         enum: PropTypes.array
     })),
+    loading: PropTypes.bool.isRequired,
     path: PropTypes.string.isRequired,
     /* Not required, as a GET might not require any input (e.g. LandedCost `validateCredentials` route) */
     request: PropTypes.oneOfType([PropTypes.object, PropTypes.array, PropTypes.string]),
