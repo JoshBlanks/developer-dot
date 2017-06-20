@@ -52,8 +52,7 @@ const buildPostmanCollection = (appState) => {
             response: []
         };
 
-        // const rawTest = (endpoint.requestSchemaExample) ? 'Grab Example Data' : JSON.stringify(fillPostBodySampleData(endpoint.requestSchema, endpoint.showExcludedPostBodyFields));
-        const rawTest = JSON.stringify(endpoint.requestSchemaExample || fillPostBodySampleData(endpoint.requestSchema, endpoint.showExcludedPostBodyFields));
+        const newRaw = JSON.stringify(endpoint.requestSchemaExample || fillPostBodySampleData(endpoint.requestSchema, endpoint.showExcludedPostBodyFields));
 
         if (endpoint.requestSchema) {
             baseRequest.request.header.push({
@@ -62,7 +61,7 @@ const buildPostmanCollection = (appState) => {
             });
             baseRequest.request.body = {
                 mode: 'raw',
-                raw: rawTest
+                raw: newRaw
             };
         } else {
             baseRequest.request.body = {
