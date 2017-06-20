@@ -9,7 +9,7 @@ import {renderToString} from 'react-dom/server';
 import parseSwaggerUi from './parseSwaggerUI';
 import mkdirp from 'mkdirp';
 import fs from 'fs';
-
+import {buildEnumFromMethod} from './build-enums';
 
 // extraExtension just to write index.html for static pages
 const saveToFs = (folder, file, html) => {
@@ -28,7 +28,7 @@ const saveToFs = (folder, file, html) => {
     });
 };
 
-const saveStaticPage = (tagName, apiPath, buildHtmlFunc, state, disqus = true) => {
+const saveStaticPage = (tagName, apiPath, buildHtmlFunc, state, apiInfo, disqus = true) => {
     const store = createStore(reducer, state);
 
     const staticHtml = renderToString(
@@ -40,10 +40,24 @@ const saveStaticPage = (tagName, apiPath, buildHtmlFunc, state, disqus = true) =
     const savePath = path.join(__dirname, '..', apiPath);
     const saveFolder = savePath.substring(0, savePath.lastIndexOf('/'));
 
+    buildEnumFromMethod({...apiInfo, dir: saveFolder}, state);
+
     saveToFs(saveFolder, `${savePath}.html`, html);
 };
 
 const saveMethodsIndex = (apiName, saveRoot, product, linksArray, methodSubsetName) => {
+    function compare(a, b) {
+        if (a.name.toLowerCase() < b.name.toLowerCase()) {
+            return -1;
+        }
+        if (a.name.toLowerCase() > b.name.toLowerCase()) {
+            return 1;
+        }
+        return 0;
+    }
+
+    linksArray.sort(compare);
+
     const linksHtml = linksArray.reduce((accum, l) => {
         return `${accum}
 <tr>
@@ -152,7 +166,7 @@ ${(disqus) ? '{% include disqus.html %}' : ''}`
 
                 // Save our root documentation page, with Postman Collection download link,
                 // API name/description, and links to models and methods documentation!
-                saveStaticPage(null, apiPath, buildHtml, {...staticState, apiEndpoints: []}, false);
+                saveStaticPage(null, apiPath, buildHtml, {...staticState, apiEndpoints: []}, {apiName, product}, false);
 
                 const tagMap = {...staticState.tagMap};
 
@@ -208,7 +222,7 @@ ${(disqus) ? '{% include disqus.html %}' : ''}`
                             const singleEndpointStaticState = {...staticState, apiEndpoints: [ep]};
                             const singleEndpointPath = createEndpointUrl(apiPath, ep.operationId, tag);
 
-                            saveStaticPage(tag, singleEndpointPath, buildHtml, singleEndpointStaticState);
+                            saveStaticPage(tag, singleEndpointPath, buildHtml, singleEndpointStaticState, {apiName, product});
                         });
                     });
                 } else {
@@ -228,7 +242,7 @@ ${(disqus) ? '{% include disqus.html %}' : ''}`
                         const singleEndpointPath = createEndpointUrl(apiPath, ep.operationId);
 
                         // Normal case, just save a single API pages
-                        saveStaticPage(null, singleEndpointPath, buildHtml, singleEndpointStaticState);
+                        saveStaticPage(null, singleEndpointPath, buildHtml, singleEndpointStaticState, {apiName, product});
                     });
                 }
             }).catch((err) => {
