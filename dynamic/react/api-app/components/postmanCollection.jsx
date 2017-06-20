@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const PostmanCollection = ({apiType, appLoaded, auth, onAuthKeyChange, postmanCollection}) => {
+const PostmanCollection = ({ apiType, appLoaded, auth, onAuthKeyChange, postmanCollection }) => {
     if (apiType !== 'REST') {
         return null;
     }
@@ -10,7 +10,7 @@ const PostmanCollection = ({apiType, appLoaded, auth, onAuthKeyChange, postmanCo
 
     const json = JSON.stringify(postmanCollection);
 
-    const blob = (appLoaded && typeof Blob !== 'undefined') ? new Blob([json], {type: 'application/json'}) : null;
+    const blob = (appLoaded && typeof Blob !== 'undefined') ? new Blob([json], { type: 'application/json' }) : null;
 
     const url = (appLoaded && typeof URL !== 'undefined') ? URL.createObjectURL(blob) : null;
 
@@ -34,7 +34,7 @@ const PostmanCollection = ({apiType, appLoaded, auth, onAuthKeyChange, postmanCo
                         </fieldset>
                     ))}
                 </form>
-                ) : null}
+            ) : null}
             <a download={fileName} href={url} onClick={clickHandler}><button className='btn btn-primary'>{'Download a Postman collection!'}</button></a>
         </div>
     );
@@ -62,7 +62,8 @@ PostmanCollection.propTypes = {
             name: PropTypes.string.isRequired,
             request: PropTypes.shape({
                 body: PropTypes.shape({
-                    mode: PropTypes.oneOf(['raw', 'formdata']).isRequired,
+                    mode: PropTypes.oneOf(['raw', 'example', 'formdata']).isRequired,
+                    example: PropTypes.string,
                     raw: PropTypes.string,
                     formdata: PropTypes.array
                 }).isRequired,
