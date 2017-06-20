@@ -13,7 +13,7 @@ const buildAuth = (authFormula) => {
     if (!authFormula) {
         auth = null;
     } else {
-        const authParams = authFormula.match(/<\w+>/g).map((key) => key.substring(1, key.length - 1)).reduce((accum, key) => ({ ...accum,
+        const authParams = authFormula.match(/<\w+>/g).map((key) => key.substring(1, key.length - 1)).reduce((accum, key) => ({...accum,
             [key]: ''
         }), {});
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const PostmanCollection = ({ apiType, appLoaded, auth, onAuthKeyChange, postmanCollection }) => {
+const PostmanCollection = ({apiType, appLoaded, auth, onAuthKeyChange, postmanCollection}) => {
     if (apiType !== 'REST') {
         return null;
     }
@@ -10,7 +10,7 @@ const PostmanCollection = ({ apiType, appLoaded, auth, onAuthKeyChange, postmanC
 
     const json = JSON.stringify(postmanCollection);
 
-    const blob = (appLoaded && typeof Blob !== 'undefined') ? new Blob([json], { type: 'application/json' }) : null;
+    const blob = (appLoaded && typeof Blob !== 'undefined') ? new Blob([json], {type: 'application/json'}) : null;
 
     const url = (appLoaded && typeof URL !== 'undefined') ? URL.createObjectURL(blob) : null;
 
