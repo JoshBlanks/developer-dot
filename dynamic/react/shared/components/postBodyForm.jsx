@@ -4,7 +4,7 @@ import PostBodyFormItem from './postBodyFormItem';
 import {hasExcludedProperties} from '../helpers';
 
 const PostBodyForm = (props) => (
-    <div className={''}>
+    <div>
         {hasExcludedProperties(props.endpoint.requestSchema) ?
             <div className={'clickable'} onClick={props.onToggleShowExcludedPostBodyProps.bind(null, props.endpoint.id)}>
                 <span className={`glyphicon glyphicon-${props.endpoint.showExcludedPostBodyFields ? 'minus' : 'plus'}`} /><span>{` ${props.endpoint.showExcludedPostBodyFields ? 'Hide advanced' : 'Show all'} request attributes`}</span>
