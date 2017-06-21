@@ -760,3 +760,21 @@ footer {
     padding-top: 10px;
     padding-bottom: 10030px;
 }
+
+.consoleScroll {
+    max-height: 500px;
+    // overflow: scroll;
+    overflow: auto;
+    // position: relative;
+}
+
+.reqScroll, .respScroll {
+    max-height: 400px;
+    overflow: auto;
+}
+
+.consoleScroll::-webkit-scrollbar, .reqScroll::-webkit-scrollbar, .respScroll::-webkit-scrollbar {
+    width: 0;
+}
+
+
