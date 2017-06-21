@@ -75,7 +75,7 @@ ${(!methodSubsetName) ? 'homepage: true' : ''}
 <table class="styled-table">
     <thead>
         <tr>
-            <th>Categories</th>
+            <th>${methodSubsetName ? 'Method' : 'Categories'}</th>
             <th>Purpose</th>
             <th>Summary</th>
         </tr>
