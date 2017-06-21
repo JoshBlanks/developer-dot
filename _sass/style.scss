@@ -763,16 +763,16 @@ footer {
 
 .consoleScroll {
     max-height: 500px;
-    overflow: auto;
+    overflow: hidden;
 }
 
 .reqScroll, .respScroll {
     max-height: 400px;
+    overflow: hidden;
+}
+
+.consoleScroll:hover, .reqScroll:hover, .respScroll:hover,
+.consoleScroll:focus, .reqScroll:focus, .respScroll:focus,
+.consoleScroll:active, .reqScroll:active, .respScroll:active {
     overflow: auto;
 }
-
-.consoleScroll::-webkit-scrollbar, .reqScroll::-webkit-scrollbar, .respScroll::-webkit-scrollbar {
-    width: 0;
-}
-
-
