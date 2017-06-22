@@ -124,12 +124,12 @@ const ConsoleLiveData = ({action, highlightedInputs, consoleLoading, path, reque
                             </div>
                             <div className={'col-md-6 console-res-container'}>
                                 <h5 className={'console-output-header'}>{'Response'}</h5>
-                                <div className={'code-snippet respScroll'}>{consoleLoading ? <div className={'loading-pulse'}></div> : <pre dangerouslySetInnerHTML={{__html: response ? syntaxHighlight(response.body) : ' '}} />}</div>
+                                <div className={'code-snippet respScroll'}>{consoleLoading ? <div className={'loading-pulse'} /> : <pre dangerouslySetInnerHTML={{__html: response ? syntaxHighlight(response.body) : ' '}} />}</div>
                             </div>
                         </div> :
                         <div>
                             <h5 className={'console-output-header'}>{'Response'}</h5>
-                            <div className={'code-snippet respScroll'}>{consoleLoading ? <div className={'loading-pulse'}></div> : <pre dangerouslySetInnerHTML={{__html: response ? syntaxHighlight(response.body) : ' '}} />}</div>
+                            <div className={'code-snippet respScroll'}>{consoleLoading ? <div className={'loading-pulse'} /> : <pre dangerouslySetInnerHTML={{__html: response ? syntaxHighlight(response.body) : ' '}} />}</div>
                             {/* eslint-enable react/no-danger */}
                         </div>
                     }
