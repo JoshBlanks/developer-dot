@@ -766,6 +766,7 @@ footer {
     overflow: hidden;
 }
 
+// This may be preventing the Nightwatch tests from passing
 .reqScroll, .respScroll {
     max-height: 400px;
     overflow: hidden;
