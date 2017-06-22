@@ -60,8 +60,6 @@ const saveMethodsIndex = (apiName, saveRoot, product, linksArray, methodSubsetNa
         endpointLinks[l.name] = `/${l.link}`;
     });
 
-    console.log(`saveRoot: ${saveRoot}`);
-
     const table = `---
 layout: default
 title: "API Console"
