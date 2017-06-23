@@ -61,11 +61,10 @@ const EndpointExamples = ({endpoint}) => {
                       example={formatReqOrResSchema(endpoint.responseSchema)}
                       title={'Example Response'}
                       type={'response'} /> : null }
-        { endpoint.requestSchema ?
-          <CodeSample endpoint={endpoint}
-                      example={buildCurl(endpoint.sampleAuthHeader, endpoint, true)}
-                      title={'Example using CURL'}
-                      type={'curl'} /> : null }
+        <CodeSample endpoint={endpoint}
+                    example={buildCurl(endpoint.sampleAuthHeader, endpoint, true)}
+                    title={'Example using CURL'}
+                    type={'curl'} />
       </div>
     );
 };
