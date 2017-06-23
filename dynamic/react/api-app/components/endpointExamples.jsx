@@ -6,6 +6,9 @@
 import {hasExampleData, fillPostBodySampleData, buildCurl} from '../../shared/helpers';
 import React from 'react';
 import PropTypes from 'prop-types';
+import ExpanderIcon from './expanderIcon';
+
+const replaceSpaces = (str) => str.replace(/\s/g, '');
 
 const RenderExample = ({example}) => {
     return (
@@ -29,19 +32,55 @@ const EndpointExamples = ({endpoint}) => {
     return (
       <div className='endpoint-examples-container'>
         <div className='request-container'>
-          <h3>{'Example Request'}</h3>
-          <code className='highlight-rouge'>
-            {`${endpoint.action.toUpperCase()} ${endpoint.path}`}
-          </code>
-          {showExample(endpoint.requestSchema) ? <RenderExample example={formatReqOrResSchema(endpoint.requestSchema)}/> : null}
+          <div className={'try-it-now-header'} data-target={`#${replaceSpaces(endpoint.operationId)}-console-body-request`} data-toggle={'collapse'} id={`${replaceSpaces(endpoint.operationId)}-console`} onClick={
+            () => {
+                $(`#${replaceSpaces(endpoint.operationId)}-console-icon-request`).toggleClass('rotate');
+                $('.console-tool-tip').tooltip();
+            }
+                }>
+            <div className={'documentation-expand-icon'} id={`${replaceSpaces(endpoint.operationId)}-console-icon-request`} style={{display: 'inline-block', marginRight: '5px'}}>
+              <ExpanderIcon startPosition={'DOWN'}/>
+            </div>
+            <h3 className={'clickable'} style={{display: 'inline-block'}}>{'Example Request'}</h3>
+          </div>
+          <div className={'collapse'} id={`${replaceSpaces(endpoint.operationId)}-console-body-request`}>
+            <code className='highlight-rouge'>
+              {`${endpoint.action.toUpperCase()} ${endpoint.path}`}
+            </code>
+            {showExample(endpoint.requestSchema) ? <RenderExample example={formatReqOrResSchema(endpoint.requestSchema)}/> : null}
+          </div>
         </div>
         <div className='response-container'>
-          <h3>{'Example Response'}</h3>
+          <div className={'try-it-now-header'} data-target={`#${replaceSpaces(endpoint.operationId)}-console-body-response`} data-toggle={'collapse'} id={`${replaceSpaces(endpoint.operationId)}-console`} onClick={
+            () => {
+                $(`#${replaceSpaces(endpoint.operationId)}-console-icon-response`).toggleClass('rotate');
+                $('.console-tool-tip').tooltip();
+            }
+                }>
+            <div className={'documentation-expand-icon'} id={`${replaceSpaces(endpoint.operationId)}-console-icon-response`} style={{display: 'inline-block', marginRight: '5px'}}>
+              <ExpanderIcon startPosition={'DOWN'}/>
+            </div>
+          <h3 className={'clickable'} style={{display: 'inline-block'}}>{'Example Response'}</h3>
+          </div>
+          <div className={'collapse'} id={`${replaceSpaces(endpoint.operationId)}-console-body-response`}>
           {showExample(endpoint.responseSchema) ? <RenderExample example={formatReqOrResSchema(endpoint.responseSchema)}/> : null}
+          </div>
         </div>
         <div className='curl-container'>
-          <h3>{'Example Using CURL'}</h3>
+          <div className={'try-it-now-header'} data-target={`#${replaceSpaces(endpoint.operationId)}-console-body-curl`} data-toggle={'collapse'} id={`${replaceSpaces(endpoint.operationId)}-console`} onClick={
+            () => {
+                $(`#${replaceSpaces(endpoint.operationId)}-console-icon-curl`).toggleClass('rotate');
+                $('.console-tool-tip').tooltip();
+            }
+                }>
+            <div className={'documentation-expand-icon'} id={`${replaceSpaces(endpoint.operationId)}-console-icon-curl`} style={{display: 'inline-block', marginRight: '5px'}}>
+              <ExpanderIcon startPosition={'DOWN'}/>
+            </div>
+            <h3 className={'clickable'} style={{display: 'inline-block'}}>{'Example Using CURL'}</h3>
+          </div>
+          <div className={'collapse'} id={`${replaceSpaces(endpoint.operationId)}-console-body-curl`}>
           <RenderExample example={buildCurl(endpoint.sampleAuthHeader, endpoint, true)} />
+          </div>
         </div>
       </div>
     );
