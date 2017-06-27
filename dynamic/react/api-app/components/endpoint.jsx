@@ -29,6 +29,7 @@ const EndPointComponent = ({endpoint, apiType, onConsoleToggledFreeEdit, onConso
                     <ApiConsole endpoint={endpoint} onAddItemToPostbodyCollection={onAddItemToPostbodyCollection} onConsoleToggledFreeEdit={onConsoleToggledFreeEdit} onConsoleToggledReadOnly={onConsoleToggledReadOnly} onFillConsoleSampleData={onFillConsoleSampleData} onPathParamChanged={onPathParamChanged} onPostBodyInputChanged={onPostBodyInputChanged} onQueryParamChanged={onQueryParamChanged} onRemovePostbodyCollectionItem={onRemovePostbodyCollectionItem} onRequestChanged={onRequestChanged} onResetConsole={onResetConsole} onSubmitConsoleRequest={onSubmitConsoleRequest} onToggleAiForRequest={onToggleAiForRequest} onToggleShowExcludedPostBodyProps={onToggleShowExcludedPostBodyProps} showExcludedPostBodyFields={endpoint.showExcludedPostBodyFields} userProfile={userProfile} />
                     {(endpoint.path.includes('api/v2')) ?
                         <div className={'v2Links'}>
+                            <p>Advanced:</p>
                             <a href={`https://sandbox-rest.avatax.com/swagger/ui/index.html#!/${tagName}/${endpoint.operationId}`}>{`https://sandbox-rest.avatax.com/swagger/ui/index.html#!/${tagName}/${endpoint.operationId}`}</a><br />
                             <a href={`https://rest.avatax.com/swagger/ui/index.html#!/${tagName}/${endpoint.operationId}`}>{`https://rest.avatax.com/swagger/ui/index.html#!/${tagName}/${endpoint.operationId}`}</a>
                         </div> : null
