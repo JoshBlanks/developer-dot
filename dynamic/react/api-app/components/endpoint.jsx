@@ -8,7 +8,7 @@ import ExpanderIcon from './expanderIcon';
 const replaceSpaces = (str) => str.replace(/\s/g, '');
 
 // Give our endpoint an id based on its name for our clientside routing in jekyll
-const EndPointComponent = ({endpoint, apiType, onFillConsoleSampleData, onSubmitConsoleRequest, onPostBodyInputChanged, onResetConsole, onQueryParamChanged, onPathParamChanged, onAddItemToPostbodyCollection, onRemovePostbodyCollectionItem, onToggleAiForRequest, onToggleShowExcludedPostBodyProps, userProfile}) => (
+const EndPointComponent = ({endpoint, tagName, apiType, onFillConsoleSampleData, onSubmitConsoleRequest, onPostBodyInputChanged, onResetConsole, onQueryParamChanged, onPathParamChanged, onAddItemToPostbodyCollection, onRemovePostbodyCollectionItem, onToggleAiForRequest, onToggleShowExcludedPostBodyProps, userProfile}) => (
     <div className={'endpoint-summary'}>
         <ApiDocumentation endpoint={endpoint} userProfile={userProfile} />
         <br />
@@ -27,6 +27,12 @@ const EndPointComponent = ({endpoint, apiType, onFillConsoleSampleData, onSubmit
                 </div>
                 <div className={'collapse'} id={`${replaceSpaces(endpoint.operationId)}-console-body`}>
                     <ApiConsole endpoint={endpoint} onAddItemToPostbodyCollection={onAddItemToPostbodyCollection} onFillConsoleSampleData={onFillConsoleSampleData} onPathParamChanged={onPathParamChanged} onPostBodyInputChanged={onPostBodyInputChanged} onQueryParamChanged={onQueryParamChanged} onRemovePostbodyCollectionItem={onRemovePostbodyCollectionItem} onResetConsole={onResetConsole} onSubmitConsoleRequest={onSubmitConsoleRequest} onToggleAiForRequest={onToggleAiForRequest} onToggleShowExcludedPostBodyProps={onToggleShowExcludedPostBodyProps} showExcludedPostBodyFields={endpoint.showExcludedPostBodyFields} userProfile={userProfile} />
+                    {(endpoint.path.includes('api/v2')) ?
+                        <div className={'v2Links'}>
+                            <a href={`https://sandbox-rest.avatax.com/swagger/ui/index.html#!/${tagName}/${endpoint.operationId}`}>{`https://sandbox-rest.avatax.com/swagger/ui/index.html#!/${tagName}/${endpoint.operationId}`}</a><br />
+                            <a href={`https://rest.avatax.com/swagger/ui/index.html#!/${tagName}/${endpoint.operationId}`}>{`https://rest.avatax.com/swagger/ui/index.html#!/${tagName}/${endpoint.operationId}`}</a>
+                        </div> : null
+                    }
                 </div>
             </div> : null}
             <EndpointExamples endpoint={endpoint} />

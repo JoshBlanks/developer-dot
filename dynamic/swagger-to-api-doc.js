@@ -128,6 +128,8 @@ export default (fileName, apiName, apiPath, product) => {
                 const buildHtml = (tagName, initialState, disqus) => {
                     const endpointLinks = initialState.apiEndpoints.reduce((accum, endpt) => `${accum}["#${endpt.operationId.replace(/\s/g, '')}", "${endpt.name}"],\n`, '');
 
+                    initialState.tagName = tagName;
+
                     return (
                         `---
 layout: default
