@@ -4,7 +4,7 @@ swagger_path: validate/transactions-api.json
 nav_link:
     title: Validate
     path: /api-reference/validate/transactions-api
-product: validate
+
 nav_links:
   - title: Overview
     path: /validate

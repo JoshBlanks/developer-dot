@@ -4,4 +4,3 @@ swagger_path: avataxbr/agasts-api.json
 nav_link:
     title: Agasts
     path: /avataxbr/api-reference/tax/v2/agast
-product: avaTaxBr

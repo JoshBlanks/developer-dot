@@ -4,4 +4,3 @@ swagger_path: avataxbr/companies-api.json
 nav_link:
     title: Companies
     path: /avataxbr/api-reference/tax/v2/companies
-product: avaTaxBr

@@ -4,4 +4,3 @@ swagger_path: avataxbr/taxconf-api.json
 nav_link:
     title: TaxConf
     path: /avataxbr/api-reference/tax/v2/taxconf
-product: avaTaxBr

@@ -4,7 +4,7 @@ swagger_path: taxdocs/transactions-api.json
 nav_link:
     title: TaxDoc Monitor
     path: /taxdocs/api-reference/
-product: taxdocs
+
 nav_links:
   - title: Overview
     path: /taxdocs
