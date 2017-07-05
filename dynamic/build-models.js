@@ -26,6 +26,7 @@ layout: default
 title: "${apiName}"
 api_console: 1
 api_name: ${apiName}
+${product === 'avaTax' && (apiName !== 'Avatax REST API v2' || apiName !== 'Avatax SOAP API') ? 'old_api: true' : ''}
 nav: apis
 product: ${product}
 doctype: api_references
@@ -49,12 +50,15 @@ endpoint_links: []
         if (def.indexOf(' > ') !== -1) {
             return;
         }
+        const model = def;
 
-        table = `${table}
-        <tr>
-            <td><a href="${encodeURIComponent(def)}">${def}</a></td>
-            <td>{{"${(defs[def].description || '').replace(/"/g, "'")}" | markdownify}}</td>
-        </tr>`;
+        if (!model.includes('FetchResult')) {
+            table = `${table}
+            <tr>
+                <td><a href="${encodeURIComponent(def)}">${def}</a></td>
+                <td>{{"${(defs[def].description || '').replace(/"/g, "'")}" | markdownify}}</td>
+            </tr>`;
+        }
     });
 
     table = `${table}
@@ -79,6 +83,7 @@ title: "${def} | ${apiName}"
 ${defs[def].description ? `ogdescription: "${(defs[def].description).replace(/"/g, "'")}"` : ''}
 api_console: 1
 api_name: ${apiName}
+${product === 'avaTax' && (apiName !== 'Avatax REST API v2' || apiName !== 'Avatax SOAP API') ? 'old_api: true' : ''}
 nav: apis
 product: ${product}
 doctype: api_references

@@ -1,29 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import url from 'url';
 import ReactMarkdown from 'react-markdown';
 import ApiDocumentationParam from './apiDocumentationParam';
 import ApiDocModelLink from './apiDocModelLink';
-import userManager from '../user-manager';
 
-const ApiDocumentation = ({endpoint, userProfile}) => (
+
+function getPath(path) {
+    let sandboxPath = path;
+
+    sandboxPath = sandboxPath.replace(/{/g, '<code>{');
+    sandboxPath = sandboxPath.replace(/}/g, '}</code>');
+    return sandboxPath;
+}
+
+
+const ApiDocumentation = ({endpoint}) => (
     <div>
         <div className='endpoint-header'>
             <h1 id={endpoint.operationId}>{endpoint.operationId}</h1>
-            {userProfile ?
-                <span style={{display: 'none'}}>
-                    <span>{`Welcome, ${userProfile.profile.given_name} ${userProfile.profile.family_name}!`}</span>
-                    <button className={'btn btn-secondary'} onClick={() => {
-                        sessionStorage.devdotRedirectUrl = window.location.href;
-                        userManager.signoutRedirect();
-                    }} style={{margin: '8px'}}>{'Logout'}</button>
-                </span> :
-                <button className={'btn btn-primary'} onClick={() => {
-                    sessionStorage.devdotRedirectUrl = window.location.href;
-                    userManager.signinRedirect();
-                }} style={{margin: '8px', display: 'none'}}>{'Authorize'}
-                </button>
-            }
         </div>
         <table className='styled-table'>
             <thead>
@@ -36,32 +30,38 @@ const ApiDocumentation = ({endpoint, userProfile}) => (
                     <td>{endpoint.action.toUpperCase()}</td>
                 </tr>
                 <tr>
-                    <th>{'REST Path'}</th>
-                    <td>{decodeURI(url.parse(endpoint.path).pathname)}</td>
-                </tr>
-                <tr>
                     <th>{(endpoint.productionPath) ? 'URL (SANDBOX)' : 'URL'}</th>
-                    <td>{endpoint.path}</td>
+                    <td dangerouslySetInnerHTML= {{__html: getPath(endpoint.path)}}/>
                 </tr>
                 {(endpoint.productionPath) ?
                     <tr>
                         <th>{'URL (PRODUCTION)'}</th>
-                        <td>{endpoint.productionPath}</td>
+                        <td dangerouslySetInnerHTML= {{__html: getPath(endpoint.productionPath)}}/>
                     </tr> : null
                 }
+                {(endpoint.queryString) ?
                 <tr>
                     <th>{'Query String'}</th>
                     <td>{(endpoint.queryString) ? '?' : ''}{Object.keys(endpoint.queryString || {}).join('&')}</td>
-                </tr>
-                <tr>
-                    <th>{'Response Type'}</th>
-                    <td>
-                        <ApiDocModelLink refSchema={endpoint.responseSchemaWithRefs} />
-                    </td>
-                </tr>
+                </tr> : null}
                 <tr>
                     <th>{'Content-Type'}</th>
                     <td>{endpoint.produces.join(', ')}</td>
+                </tr>
+                {endpoint.requestSchemaWithRefs ?
+                    <tr>
+                        <th>{'Request Body'}</th>
+                        <td>
+                            <ApiDocModelLink refSchema={endpoint.requestSchemaWithRefs} />
+                        </td>
+                    </tr> :
+                    null
+                }
+                <tr>
+                    <th>{'Response Body'}</th>
+                    <td>
+                        <ApiDocModelLink refSchema={endpoint.responseSchemaWithRefs} />
+                    </td>
                 </tr>
             </thead>
         </table>
@@ -105,8 +105,7 @@ const ApiDocumentation = ({endpoint, userProfile}) => (
 
 ApiDocumentation.displayName = 'API Documentation';
 ApiDocumentation.propTypes = {
-    endpoint: PropTypes.object,
-    userProfile: PropTypes.object
+    endpoint: PropTypes.object
 };
 
 export default ApiDocumentation;

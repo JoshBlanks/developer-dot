@@ -1,5 +1,6 @@
 # AVATAX BatchSvc SOAP
-
 nav_link:
     title: Avatax BatchSvc SOAP API
     path: /avatax/api-reference/batch/soap
+older_api: true
+

@@ -147,10 +147,12 @@ h2, h3 {
     }
 }
 
-.nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover {
+.nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover, .older-api {
     background: white;
     color: $Ava-orange;
 }
+
+
 
 .hidden {
     display: none;
@@ -178,4 +180,14 @@ h2, h3 {
     letter-spacing: 0.1rem;
     line-height:16px;
     text-transform: none;
+}
+
+.api-ref {
+    width: auto;
+    max-width: 25%;
+}
+
+.code-example-content {
+    height: auto;
+    min-height: 150px;
 }

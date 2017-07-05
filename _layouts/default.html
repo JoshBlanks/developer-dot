@@ -138,23 +138,6 @@
                                         {% endfor %}
                                     </ul>
                                     {% endif %}
-                                    <h2>Avalara Brazil</h2>
-                                    {% if site.data.api_consoles.taxdocs.nav_links %}
-                                    <h4>TaxDoc Monitor</h4>
-                                    <ul class="pipe">
-                                        {% for api_console_hash in site.data.api_consoles.taxdocs.nav_links %}
-                                        <li><a href="{{api_console_hash.path}}">{{api_console_hash.title}}</a></li>
-                                        {% endfor %}
-                                    </ul>
-                                    {% endif %}
-                                    {% if site.data.api_consoles.validate.nav_links %}
-                                    <h4>Validate</h4>
-                                    <ul class="pipe">
-                                        {% for api_console_hash in site.data.api_consoles.validate.nav_links %}
-                                        <li><a href="{{api_console_hash.path}}">{{api_console_hash.title}}</a></li>
-                                        {% endfor %}
-                                    </ul>
-                                    {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -167,10 +150,11 @@
                             <li><a href="/sdk/">The AvaTax SDK</a></li>
                             <li><a href="/sdk/soap">SOAP SDK</a></li>
                             <br/>
-                            <li><a target="_blank" href="https://github.com/avadev/AvaTax-REST-V2-DotNet-SDK#installing-the-dotnet-sdk">Install C# SDK via NuGet</a></li>
-                            <li><a target="_blank" href="https://github.com/avadev/AvaTax-REST-V2-JRE-SDK#installing-the-jre-sdk">Install JRE SDK via Maven</a></li>
-                            <li><a target="_blank" href="https://github.com/avadev/AvaTax-REST-V2-PHP-SDK#installing-the-php-sdk">Install PHP SDK via Composer</a></li>
-                            <li><a target="_blank" href="https://github.com/avadev/AvaTax-REST-V2-Ruby-SDK">Install Ruby SDK via RubyGems</a></li>
+                            <li><a target="_blank" href="https://www.nuget.org/packages/Avalara.AvaTax/">Install C# SDK via NuGet</a></li>
+                            <li><a target="_blank" href="http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22net.avalara.avatax%22">Install JRE SDK via Maven</a></li>
+                            <li><a target="_blank" href="https://packagist.org/packages/avalara/avataxclient">Install PHP SDK via Composer</a></li>
+                            <li><a target="_blank" href="https://rubygems.org/gems/avatax">Install Ruby SDK via RubyGems</a></li>
+                            <li><a target="_blank" href="https://www.npmjs.com/package/avatax">Install JavaScript SDK via NPMJS</a></li>
                         </ul>
                     </li>
                     <li class="tests"><a href="/tests/testing-your-integration/"><span class="text-uppercase">Tests</span></a></li>
@@ -298,7 +282,7 @@
         </section>
         {% elsif page.nav == 'apis' %} {%if page.doctype != 'overview' %} {% include api_breadcrumb.html %} {%endif%} {% if page.doctype == 'api_references' or page.doctype == 'use_cases' %}
         <section class="row padding-sides{% if page.doctype == 'use_cases' or page.doctype == 'sdks' %} half{% endif %}">
-            <nav class="col-md-3">
+            <nav class="col-md-3{% if page.doctype == 'api_references' %} api-ref{% endif %}">
                 {% if page.doctype == 'api_references' %} {% include api_reference_navigation.html %} {% else %} {% include use_cases_navigation.html %} {% endif %}
             </nav>
             <main class="col-md-9{% if page.doctype == 'api_references' %} small-no-padding{% endif %}">{{ content }}</main>

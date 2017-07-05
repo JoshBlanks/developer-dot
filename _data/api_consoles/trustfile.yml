@@ -1,9 +1,7 @@
 # TRUSTFILE
-
 nav_link:
     title: Trustfile - Core
     path: /trustfile/api-reference/core/v3
-
 nav_links:
   - title: Overview
     path: /trustfile
