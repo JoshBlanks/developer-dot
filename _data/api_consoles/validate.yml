@@ -1,6 +1,5 @@
 # TAXDOCS MONITOR
 
-swagger_path: validate/transactions-api.json
 nav_link:
     title: Validate
     path: /api-reference/validate/transactions-api

@@ -31,6 +31,7 @@ permalink: /search/
                 <option value="trustFile">TrustFile</option>
                 <option value="communications">Communications</option>
                 <option value="blog">Blog</option>
+                <option value="avaTaxBr">AvaTax Brazil</option>
             </select>
         </div>
         <div class="col-md-5">
@@ -45,7 +46,7 @@ permalink: /search/
                 </div>
             </div>
         </div>
-    </form>    
+    </form>
     <div class="row padding-bottom">
         <div class="col-md-12">
             <div id="search-results"></div>
