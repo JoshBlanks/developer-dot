@@ -41,7 +41,7 @@ So in a moment or two, you should receive an email from support@avalara.com with
 
 <h2>Listing All My Companies</h2>
 
-As Bob's Artisan Pottery store, we will need to begin by adding a "Company" record to keep track of our sales.  Since Avalara works for all companies both small and large, you can use the AvaTax API whether you have a single corporate entity or whether you manage lots of different registered businesses.  Let's start by listing all the companies defined in this account.In AvaTax, we list companies by calling <a href="https://developer.avalara.com/api-reference/avatax/rest/v2/methods/Companies/">https://sandbox-rest.avatax.com/api/v2/companies</a> - but we need to authenticate against the API.  In order to do this, we need to add a basic authentication header to our web request.  Let's start by creating our basic authentication header.  If you're writing code, your programming language likely supports Base64 encoding directly.  Here's how to construct the basic authentication header in C# - most other programming languages work the same way:
+As Bob's Artisan Pottery store, we will need to begin by adding a "Company" record to keep track of our sales.  Since Avalara works for all companies both small and large, you can use the AvaTax API whether you have a single corporate entity or whether you manage lots of different registered businesses.  Let's start by listing all the companies defined in this account.In AvaTax, we list companies by calling <a href="https://developer.avalara.com/api-reference/avatax/rest/v2/methods/Companies/CreateCompanies/">https://developer.avalara.com/api-reference/avatax/rest/v2/methods/Companies/CreateCompanies/</a> - but we need to authenticate against the API.  In order to do this, we need to add a basic authentication header to our web request.  Let's start by creating our basic authentication header.  If you're writing code, your programming language likely supports Base64 encoding directly.  Here's how to construct the basic authentication header in C# - most other programming languages work the same way:
 
 ```csharp
 	string combined = String.Format("{0}:{1}", username, password);
@@ -77,7 +77,7 @@ If you'd like to type along with me without using a programming language, we can
 Of course, to make this work, you'll have to use your username and password instead of Bob McExample's information.  Once you've completed your basic authentication header, let's make an API call to list companies:
 
 <ul class="normal">
-<li>Launch the <b>List Companies</b> API by clicking this URL: <a href="https://developer.avalara.com/api-reference/avatax/rest/v2/methods/Companies/">https://developer.avalara.com/api-reference/avatax/rest/v2/methods/Companies/</a></li>
+<li>Launch the <b>List Companies</b> API by clicking this URL: <a href="https://developer.avalara.com/api-reference/avatax/rest/v2/methods/Companies/QueryCompanies/">https://developer.avalara.com/api-reference/avatax/rest/v2/methods/Companies/QueryCompanies/</a></li>
 <li>In the <b>Authorization</b> field, type in your basic authentication header from above.</li>
 <li>Finally, click the <b>Try It</b> button on the page.  Here's the result you should get:</li>
 </ul>
